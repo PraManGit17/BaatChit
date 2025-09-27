@@ -13,7 +13,7 @@ export const Usersignup = async (req, res) => {
   const { name, email, password, mobile } = req.body;
 
   try {
-    const userexists = User.findOne({ $or: [{ email }, { mobile }] });
+    const userexists = await User.findOne({ $or: [{ email }, { mobile }] });
 
     if (userexists) {
       return res.status(400).json({
@@ -46,7 +46,7 @@ export const Userlogin = async (req, res) => {
 
   try {
 
-    const user = User.findOne({ $or: [{ email }, { mobile }] });
+    const user = await User.findOne({ $or: [{ email }, { mobile }] });
 
     if (!user) {
       return res.status(400).json({
