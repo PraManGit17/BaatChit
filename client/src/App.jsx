@@ -1,21 +1,20 @@
-import { useState } from "react";
-import Login from "./components/Login";
-import Chat from "./components/Chat";
+import React from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import AuthPage from './pages/AuthPage';
+import ChatPage from './pages/ChatPage';
 
-function App() {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
-  console.log(user, token);
-  
+const App = () => {
   return (
-    <div className="h-screen flex justify-center items-center bg-gray-100">
-      {!user ? (
-        <Login onLogin={(u, t) => { setUser(u); setToken(t); }} />
-      ) : (
-        <Chat user={user} token={token} />
-      )}
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<ChatPage />} />
+          <Route path='/auth' element={<AuthPage />} />
+          {/* <Route path="*" element={<NotFound />} /> */}
+        </Routes>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

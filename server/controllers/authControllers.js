@@ -41,8 +41,15 @@ export const Usersignup = async (req, res) => {
 }
 
 export const Userlogin = async (req, res) => {
+  const { emailorphone, password } = req.body;
 
-  const { email, mobile, password } = req.body;
+  let email, mobile;
+
+  if (/^\d+$/.test(emailorphone)) {
+    mobile = emailorphone;
+  } else {
+    email = emailorphone;
+  }
 
   try {
 
