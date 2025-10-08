@@ -5,7 +5,7 @@ import ChatContainer from '../components/ChatContainer'
 
 const ChatPage = () => {
   return (
-    <div className='bg-gray-200 h-screen w-full px-3 py-4 flex items-center gap-4'>
+    <div className='bg-blue-50 h-screen w-full px-3 py-4 flex items-center gap-4'>
       <Sidebar />
       <ChatList />
       <ChatContainer />
