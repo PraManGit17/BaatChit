@@ -1,20 +1,31 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import AuthPage from './pages/AuthPage';
 import ChatPage from './pages/ChatPage';
 
 const App = () => {
-  return (
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<ChatPage />} />
-          <Route path='/auth' element={<AuthPage />} />
-          {/* <Route path="*" element={<NotFound />} /> */}
-        </Routes>
-      </BrowserRouter>
-    </div>
-  )
-}
+  const userloggedIn = useSelector((state) => state.auth.user);
 
-export default App
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            userloggedIn ? <ChatPage /> : <Navigate to="/auth" replace />
+          }
+        />
+
+        <Route
+          path="/auth"
+          element={
+            userloggedIn ? <Navigate to="/" replace /> : <AuthPage />
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App;
