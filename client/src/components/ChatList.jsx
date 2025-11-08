@@ -28,8 +28,8 @@ const ChatList = () => {
     (user) => user._id !== loggedUser?._id
   );
 
-  console.log("The Users", users)
-  console.log("The Logged In User: ", loggedUser);
+  // console.log("The Users", users)
+  // console.log("The Logged In User: ", loggedUser);
   return (
     <div className='h-full w-120 flex flex-col items-center rounded py-2'>
       <div className='w-full bg-white rounded py-2 px-4 shadow-sm shadow-gray-600 flex items-center gap-2'>

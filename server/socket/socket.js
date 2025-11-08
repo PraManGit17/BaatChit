@@ -13,6 +13,7 @@ function initSocket(server) {
   });
 
   // Middleware for auth
+  
   io.use((socket, next) => {
     const token = socket.handshake.auth?.token || socket.handshake.query?.token;
     if (!token) return next();

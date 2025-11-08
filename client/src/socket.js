@@ -1,12 +1,17 @@
-// src/socket.js
+
 import { io } from "socket.io-client";
 
-let socket;
+const SOCKET_URL = "http://localhost:5000";
+let socket = null;
 
-export const initSocket = (token) => {
-  socket = io("http://localhost:5000", {
+export const connectSocket = (token) => {
+  socket = io(SOCKET_URL, {
     auth: { token },
+    transports: ["websocket"],
   });
+
+  socket.on("connect", () => console.log("Socket Connected:", socket.id));
+  socket.on("disconnect", () => console.log("Socket Disconnected"));
   return socket;
 };
 

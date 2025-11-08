@@ -223,7 +223,7 @@ const AuthPage = () => {
             <form className='mt-8 w-[80%] flex flex-col gap-4'>
 
               <div className='flex flex-col gap-1'>
-                <label className='text-lg font-medium'>Email:</label>
+                <label className='text-lg font-medium'>Name:</label>
                 <input
                   type="text"
                   name="name"
