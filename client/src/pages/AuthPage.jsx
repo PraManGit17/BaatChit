@@ -6,6 +6,8 @@ import messagingright from '/messagingright.jpg';
 import chat from '/chat.jpg';
 import gsap from 'gsap';
 import { signup, login } from '../api/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLoading, setUser, setError } from '../redux/AuthSlice';
 
 const AuthPage = () => {
   const leftRef = useRef(null);
@@ -58,6 +60,7 @@ const AuthPage = () => {
     return () => ctx.revert();
   }, []);
 
+
   const toggleForm = () => {
     if (showSignup) {
       gsap.to(singupref.current, {
@@ -97,6 +100,8 @@ const AuthPage = () => {
     password: "",
     emailorphone: "",
   });
+  const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -105,42 +110,69 @@ const AuthPage = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
+
+      dispatch(setLoading(true));
       const res = await signup(formData);
+
+      dispatch(setUser({
+        user: res.user,
+        token: res.token
+      }))
       alert(res.message);
-      localStorage.setItem("token", res.token);
+
+      // localStorage.setItem("token", res.token);
+
       setFormData({
         name: "",
         email: "",
         mobile: "",
         password: "",
       });
+
       const timer = setTimeout(() => {
-        navigate("/chat");
+        navigate("/");
       }, 3000);
       return () => clearTimeout(timer)
+
     } catch (error) {
+      dispatch(setError(error.message));
       alert(error.message);
-    };
-  }
+    } finally {
+      dispatch(setLoading(false))
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+
+      dispatch(setLoading(true));
       const res = await login(formData);
+
+      dispatch(setUser({
+
+        user: res.user,
+        token: res.token
+      }))
+      // localStorage.setItem("token", res.token);
       alert(res.message);
-      localStorage.setItem("token", res.token);
+
       setFormData({
         emailorphone: "",
         password: "",
       });
+
       const timer = setTimeout(() => {
         navigate("/");
       }, 3000);
       return () => clearTimeout(timer)
     } catch (error) {
+      dispatch(setError(error.message));
       alert(error.message);
-    };
-  }
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
 
   return (
     <div ref={rootRef} className='h-screen flex items-center justify-center pt-serif-regular overflow-hidden'>
@@ -189,6 +221,20 @@ const AuthPage = () => {
             </div>
 
             <form className='mt-8 w-[80%] flex flex-col gap-4'>
+
+              <div className='flex flex-col gap-1'>
+                <label className='text-lg font-medium'>Email:</label>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Enter Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className='bg-gray-200/60 order border-gray-500 px-4 py-1 rounded-lg placeholder:text-gray-400 placeholder:font-medium'
+                />
+              </div>
+
+
               <div className='flex flex-col gap-1'>
                 <label className='text-lg font-medium'>Email:</label>
                 <input
@@ -205,7 +251,7 @@ const AuthPage = () => {
                 <label className='text-lg font-medium'>Phone:</label>
                 <input
                   type="text"
-                  name="phone"
+                  name="mobile"
                   placeholder="Enter Phone"
                   value={formData.mobile}
                   onChange={handleChange}
@@ -227,8 +273,14 @@ const AuthPage = () => {
 
 
               <div className='w-full flex justify-center mt-4'>
-                <button onClick={handleSignup} className="w-[50%] bg-black text-white rounded-lg mt-4 py-1">
-                  SignUp
+                <button
+                  onClick={handleSignup}
+                  disabled={loading}
+                  className={
+                    `w-[50%] bg-black text-white rounded-lg mt-4 py-1
+                  ${loading ? "opacity-50 cursor-not-allowed" : ""}
+                `}>
+                  {loading ? "Signing up..." : "SignUp"}
                 </button>
               </div>
             </form>
@@ -272,10 +324,18 @@ const AuthPage = () => {
 
 
               <div className='w-full flex justify-center mt-4 '>
-                <button onClick={handleLogin} className="w-[50%] bg-black text-white rounded-lg mt-4 py-1">
-                  Login
+                <button
+                  onClick={handleLogin}
+                  disabled={loading}
+                  className={
+                    `w-[50%] bg-black text-white rounded-lg mt-4 py-1
+                  ${loading ? "opacity-50 cursor-not-allowed" : ""}
+                `}
+                >
+                  {loading ? "Signing In..." : "Sign In"}
                 </button>
               </div>
+
             </form>
 
 
