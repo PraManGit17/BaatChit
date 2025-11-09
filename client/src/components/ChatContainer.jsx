@@ -79,7 +79,7 @@ const ChatContainer = () => {
 
   if (!selectedUser)
     return (
-      <div className='shadow-sm shadow-gray-600 w-full h-full rounded-2xl bg-white flex items-center justify-center text-gray-500'>
+      <div className='shadow-sm shadow-gray-100 text-xl w-full h-full rounded-2xl bg-[#2B2B2B] flex items-center justify-center text-white poppins-medium'>
         Select a user to start chatting 💬
       </div>
     );
@@ -88,23 +88,23 @@ const ChatContainer = () => {
 
 
   return (
-    <div className='shadow-sm shadow-gray-600 w-full h-full rounded-2xl bg-white flex flex-col items-center'>
+    <div className='shadow-sm shadow-gray-100 w-full h-full rounded-2xl bg-[#2B2B2B] flex flex-col items-center text-white poppins-medium'>
 
       <div className='py-4 flex items-center gap-1 w-[95%] border-b-2 border-gray-300'>
-        <div className='p-5 border-2 rounded-full ml-2'></div>
+        <div className='p-5 border-2 border-white rounded-full ml-2'></div>
         <div className='flex items-baseline justify-between w-full px-4'>
           <div className='text-lg font-bold'>{selectedUser.name}</div>
         </div>
       </div>
 
-      <div className='py-4 flex flex-col gap-2 w-[95%] h-[550px] overflow-y-auto border-b-2 border-gray-300'>
+      <div className="py-4 px-8 flex flex-col gap-2 w-[95%] h-[550px] overflow-y-auto border-b-2 border-gray-300 scrollbar-hide">
+
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`max-w-[400px] px-4 py-2 rounded-xl font-medium ${(msg.sender?._id || msg.sender) === selectedUser._id
-              ? 'bg-gray-200 self-start'
-              : 'bg-blue-100 self-end'
-              }`}
+            className={`max-w-[400px] px-4 py-1 rounded-md poppins-regular font-medium ${(msg.sender?._id || msg.sender) === selectedUser._id
+              ? 'bg-[#1C1C1C] self-start'
+              : 'bg-[#444444] self-end'} `}
           >
             {msg.text}
           </div>
@@ -114,10 +114,9 @@ const ChatContainer = () => {
 
 
 
-      <div className='flex items-center justify-center gap-3 w-[95%] mt-4 mb-4'>
-        <img src={mic} className='h-6 bg-white' />
+      <div className='flex items-center justify-start gap-3 w-[95%] mt-4 mb-4'>
         <input
-          className='bg-gray-100 border-2 py-2 px-3 rounded-lg w-[90%] outline-none'
+          className='bg-[#444444] py-2 px-3 rounded-lg w-full outline-none'
           placeholder='Type Something...'
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -125,7 +124,7 @@ const ChatContainer = () => {
         />
         <button
           onClick={handleSend}
-          className='p-2 rounded-full bg-green-600 flex items-center justify-center'
+          className='p-2.5 rounded-full bg-[#444444] flex items-center justify-center'
         >
           <img src={send} className='h-4' />
         </button>

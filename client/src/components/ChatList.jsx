@@ -31,23 +31,23 @@ const ChatList = () => {
   // console.log("The Users", users)
   // console.log("The Logged In User: ", loggedUser);
   return (
+
     <div className='h-full w-120 flex flex-col items-center rounded py-2'>
-      <div className='w-full bg-white rounded py-2 px-4 shadow-sm shadow-gray-600 flex items-center gap-2'>
+      <div className='w-full bg-[#333333] rounded py-2 px-4 shadow-sm shadow-white flex items-center gap-2'>
         <Search size={17} className='text-gray-400 font-medium' />
         <div className='text-lg text-gray-400'>Search....</div>
       </div>
 
-      <div className='w-full h-full flex flex-col gap-2 mt-8'>
+      <div className='w-full h-full flex flex-col gap-2 mt-4'>
         {filteredUsers.map(user => (
           <div
             key={user._id}
-            className='w-full bg-white rounded py-4 shadow-sm shadow-gray-600 flex gap-1 cursor-pointer hover:bg-gray-100'
+            className='w-full bg-[#2d2c2c] rounded py-4 shadow-sm border-white border-1 flex gap-1 cursor-pointer hover:bg-gradient-to-l from-[#515151] to-[#2B2B2B]'
             onClick={() => dispatch(selectUser(user))}
           >
-            <div className='p-5 border-2 rounded-full ml-2'></div>
+            <div className='p-5 border-2 border-white rounded-full ml-2'></div>
             <div className='flex items-baseline justify-between w-full px-4'>
-              <div className='text-lg font-bold'>{user.name}</div>
-              <div className='text-sm font-medium text-gray-500'>12:00</div>
+              <div className='text-lg font-bold text-gray-200'>{user.name}</div>
             </div>
           </div>
         ))}
