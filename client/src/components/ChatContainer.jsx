@@ -86,10 +86,10 @@ const ChatContainer = () => {
 
   console.log(messages)
 
-  
+
   return (
     <div className='shadow-sm shadow-gray-600 w-full h-full rounded-2xl bg-white flex flex-col items-center'>
-     
+
       <div className='py-4 flex items-center gap-1 w-[95%] border-b-2 border-gray-300'>
         <div className='p-5 border-2 rounded-full ml-2'></div>
         <div className='flex items-baseline justify-between w-full px-4'>
@@ -101,7 +101,7 @@ const ChatContainer = () => {
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`max-w-[400px] px-4 py-2 rounded-xl font-medium ${msg.sender._id === selectedUser._id
+            className={`max-w-[400px] px-4 py-2 rounded-xl font-medium ${(msg.sender?._id || msg.sender) === selectedUser._id
               ? 'bg-gray-200 self-start'
               : 'bg-blue-100 self-end'
               }`}
@@ -111,6 +111,8 @@ const ChatContainer = () => {
         ))}
         <div ref={chatEndRef}></div>
       </div>
+
+
 
       <div className='flex items-center justify-center gap-3 w-[95%] mt-4 mb-4'>
         <img src={mic} className='h-6 bg-white' />

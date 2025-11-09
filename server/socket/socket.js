@@ -28,7 +28,7 @@ function initSocket(server) {
   });
 
   io.on('connection', (socket) => {
-    console.log(`Socket connected - ${socket.id} for userId: ${socket.userId}`);
+    // console.log(`Socket connected - ${socket.id} for userId: ${socket.userId}`);
 
     if (socket.userId) {
       const prev = onlineUsers.get(socket.userId) || [];
@@ -49,9 +49,11 @@ function initSocket(server) {
         const messages = await Message.find({
           $or: [
             { sender: socket.userId, receiver: withUserId },
-            { receiver: withUserId, sender: socket.userId }
+            { receiver: socket.userId, sender: withUserId }
           ]
         }).sort({ createdAt: -1 }).skip(skip).limit(limit).lean();
+
+        console.log(messages);
 
         if (typeof callback === "function") {
           callback({ ok: true, message: messages.reverse() });
