@@ -175,7 +175,7 @@ const AuthPage = () => {
   };
 
   return (
-    <div ref={rootRef} className='h-screen flex items-center justify-center pt-serif-regular overflow-hidden'>
+    <div ref={rootRef} className='h-screen flex items-center justify-center pt-serif-regular overflow-hidden bg-gradient-to-b from-gray-500 to-gray-300'>
       <div className='w-[35%] h-full flex items-center justify-end'>
         <img
           ref={leftRef}
@@ -214,60 +214,63 @@ const AuthPage = () => {
 
           <div ref={singupref} style={{ display: showSignup ? "flex" : "none" }}
             className='w-full flex flex-col items-center justify-center font-medium py-4 mt-12'>
-            <div className='text-xl font-medium mb-2'>Create Account To Have A<span className='italic'> BaatChit </span></div>
-            <div className='w-[70%] text-lg flex items-center justify-between rounded-2xl bg-gray-200 mt-2 '>
-              <div className='w-1/2 text-center bg-black text-white rounded-2xl py-0.5'>SignUp</div>
+            <div className='text-xl mb-2 poppins-medium'>Account Baano Aur Thodi BaatChit Karo!</div>
+
+            <div className='w-[70%] text-md flex items-center justify-between rounded-2xl bg-gray-200 mt-2'>
+              <div className='w-1/2 py-1 text-center bg-black text-white rounded-2xl'>SignUp</div>
               <div className='w-1/2 text-center'>SignIn</div>
             </div>
 
-            <form className='mt-8 w-[80%] flex flex-col gap-4'>
+            <form className='mt-8 w-[80%] flex flex-col gap-5'>
 
               <div className='flex flex-col gap-1'>
-                <label className='text-lg font-medium'>Name:</label>
+                <label className='text-lg font-medium'>Name</label>
                 <input
                   type="text"
                   name="name"
                   placeholder="Enter Name"
                   value={formData.name}
                   onChange={handleChange}
-                  className='bg-gray-200/60 order border-gray-500 px-4 py-1 rounded-lg placeholder:text-gray-400 placeholder:font-medium'
+                  className='w-full bg-gray-950 text-white  border-gray-500 px-4 py-1 rounded-lg outline-none placeholder:text-gray-100 placeholder:opacity-65 placeholder:font-medium'
                 />
               </div>
 
 
               <div className='flex flex-col gap-1'>
-                <label className='text-lg font-medium'>Email:</label>
+                <label className='text-lg font-medium'>Email</label>
                 <input
                   type="email"
                   name="email"
                   placeholder="Enter Email"
                   value={formData.email}
                   onChange={handleChange}
-                  className='bg-gray-200/60 order border-gray-500 px-4 py-1 rounded-lg placeholder:text-gray-400 placeholder:font-medium'
+                  className='w-full bg-gray-950 text-white   border-gray-500 px-4 py-1 rounded-lg outline-none placeholder:text-gray-100 placeholder:opacity-65  placeholder:font-medium'
                 />
               </div>
 
+
               <div className='flex flex-col gap-1'>
-                <label className='text-lg font-medium'>Phone:</label>
+                <label className='text-lg font-medium'>Phone</label>
                 <input
                   type="text"
                   name="mobile"
                   placeholder="Enter Phone"
                   value={formData.mobile}
                   onChange={handleChange}
-                  className='bg-gray-200/60 order border-gray-500 px-4 py-q rounded-lg placeholder:text-gray-400 placeholder:font-medium'
+                  className='w-full bg-gray-950 text-white   border-gray-500 px-4 py-1 rounded-lg outline-none placeholder:text-gray-100 placeholder:opacity-65  placeholder:font-medium'
                 />
               </div>
 
-              <div className='flex flex-col gap-2'>
-                <label className='text-lg font-medium'>Password:</label>
+
+              <div className='flex flex-col gap-1'>
+                <label className='text-lg font-semd'>Password</label>
                 <input
                   type="password"
                   name="password"
                   placeholder="Enter Password"
                   value={formData.password}
                   onChange={handleChange}
-                  className='bg-gray-200/60 order border-gray-500 px-4 py-1 rounded-lg placeholder:text-gray-400 placeholder:font-medium'
+                  className='w-full bg-gray-950 text-white border-gray-500 px-4 py-1 rounded-lg outline-none placeholder:text-gray-100 placeholder:opacity-65  placeholder:font-medium'
                 />
               </div>
 
@@ -291,34 +294,34 @@ const AuthPage = () => {
 
           <div ref={loginref} style={{ display: showSignup ? "none" : "flex" }}
             className='w-full flex flex-col items-center justify-center font-medium py-4 mt-12'>
-            <div className='text-xl font-medium mb-2'>SigIn For A <span className='italic'> BaatChit </span></div>
-            <div className='w-[70%] text-lg flex items-center justify-between rounded-2xl bg-gray-200 mt-2 '>
+            <div className='text-xl font-medium mb-2 poppins-medium'>Wapis BaatChit Karni Hai? Login Karlo!</div>
+            <div className='w-[70%] text-md flex items-center justify-between rounded-2xl bg-gray-200 mt-2 '>
               <div className='w-1/2 text-center'>SignUp</div>
-              <div className='w-1/2 text-center bg-black text-white rounded-2xl py-0.5 '>SignIn</div>
+              <div className='w-1/2 py-1 text-center bg-black text-white rounded-2xl '>SignIn</div>
             </div>
 
             <form className='mt-8 w-[80%] flex flex-col gap-4'>
               <div className='flex flex-col gap-1'>
-                <label className='text-lg font-medium'>Email/Phone:</label>
+                <label className='text-lg font-medium'>Email/Phone</label>
                 <input
                   type="text"
                   name="emailorphone"
                   placeholder="Enter Email or Phone"
                   value={formData.emailorphone}
                   onChange={handleChange}
-                  className='bg-gray-200/60 order border-gray-500 px-4 py-1 rounded-lg placeholder:text-gray-400 placeholder:font-medium'
-                />
+                  className='w-full bg-gray-950 text-white   border-gray-500 px-4 py-1 rounded-lg outline-none placeholder:text-gray-100 placeholder:opacity-65  placeholder:font-medium'
+               s />
               </div>
 
               <div className='flex flex-col gap-2'>
-                <label className='text-lg font-medium'>Password:</label>
+                <label className='text-lg font-medium'>Password</label>
                 <input
                   type="password"
                   name="password"
                   placeholder="Enter Password"
                   value={formData.password}
                   onChange={handleChange}
-                  className='bg-gray-200/60 order border-gray-500 px-4 py-1 rounded-lg placeholder:text-gray-400 placeholder:font-medium'
+                  className='w-full bg-gray-950 text-white   border-gray-500 px-4 py-1 rounded-lg outline-none placeholder:text-gray-100 placeholder:opacity-65  placeholder:font-medium'
                 />
               </div>
 
